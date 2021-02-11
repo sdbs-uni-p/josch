@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "additionalProperties": false,
+  "type": "object",
+  "title": "foo",
+  "properties": {
+    "age": {
+      "type":["number", "string"]
+    },
+    "name": {
+      "type": "string"
+    },
+    "_id": {
+      "type": [
+        "object",
+        "string",
+        "number"
+      ]
+    }
+  },
+  "required": [
+    "_id",
+    "age",
+    "name"
+  ]
+}

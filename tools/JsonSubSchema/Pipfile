@@ -1,0 +1,15 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+
+[packages]
+# this version is required because current version causes bugs on windows. 
+# expected fix is early 2021. 
+numpy = "==1.19.3"
+jsonsubschema = {editable = true, git = "https://github.com/IBM/jsonsubschema.git", ref = "165f8939c9c294d8f6fa01d9e6690a26bd24e9c9"}
+
+[requires]
+python_version = "3.8"

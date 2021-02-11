@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "additionalProperties": false,
+  "type": "object",
+  "title": "students",
+  "properties": {
+    "year": {
+      "type": "number"
+    },
+    "name": {
+      "type": "string"
+    },
+    "language": {
+      "type": "string"
+    },
+    "_id": {
+      "type": [
+        "object",
+        "string",
+        "number"
+      ]
+    },
+    "class": {
+      "type": "integer"
+    }
+  },
+  "required": [
+    "_id",
+    "name",
+    "year",
+    "class"
+  ]
+}

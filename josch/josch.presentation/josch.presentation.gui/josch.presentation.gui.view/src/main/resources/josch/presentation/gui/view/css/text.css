@@ -1,0 +1,89 @@
+
+/*!
+  This stylesheet is used to define the styling text within the Josch application.
+  Text contains things like the font families, font sizes, font colors, syntax highlighting and
+  difference highlighting. It also includes the styling of text Fields and date pickers.
+ */
+
+.root {
+    -fx-font: normal normal 14 sans-serif;
+}
+
+/* Captions */
+
+.cb-caption {
+    -fx-font: normal bold 16 sans-serif;
+}
+
+.cpt {
+    -fx-fill: -fx-bg-hc;
+    -fx-font: normal bold 16 sans-serif;
+    -fx-padding: 0 0 15 0;
+}
+
+/* difference highlighting */
+.highlight {
+    -rtfx-background-color: -fx-sh-h;
+}
+
+/* labels */
+.label {
+    -fx-text-fill: -fx-bg-hc;
+}
+
+/* text fields */
+.text-field, .date-picker {
+    -fx-background-color: transparent;
+    -fx-border-color: -fx-bg-mid;
+    -fx-text-fill: -fx-bg-dark;
+    -fx-shadow-highlight-color: transparent;
+    -fx-text-box-border: transparent;
+}
+
+/* code area syntax highlighting */
+
+/* change the font for code area */
+@font-face {
+    src: url('fonts/lucon.ttf');
+}
+
+/* code area text styling */
+.styled-text-area .text {
+    -fx-font-family: "Lucida Console", monospace;
+}
+
+/** brackets within code areas */
+.brace, .bracket, .parenthesis {
+    -fx-fill: -fx-sh-brack;
+    -fx-font-weight: bold;
+}
+
+/* default coloring of code areas */
+.default {
+    -fx-fill: -fx-bg-dark;
+}
+
+/* The "name" part of JSON Object name/value pairs */
+.name {
+    -fx-fill: -fx-sh-kw;
+    -fx-font-weight: bold;
+}
+
+/* Semicolons within code areas */
+.semicolon {
+    -fx-font-weight: bold;
+}
+
+/** values of code areas. Note that these can be separated at wish. */
+.string, .number {
+    -fx-fill: -fx-sh-val;
+}
+
+.hyperlink,
+.hyperlink:hover,
+.hyperlink:hover:visited,
+.hyperlink:armed,
+.hyperlink:visited,
+.hyperlink:hover:armed {
+    -fx-text-fill: -fx-sh-kw;
+}

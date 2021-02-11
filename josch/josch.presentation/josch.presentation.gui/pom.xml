@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>josch.presentation</artifactId>
+        <groupId>de.passau.uni.fim.josch.presentation</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>de.passau.uni.fim.josch.presentation.gui</groupId>
+    <artifactId>josch.presentation.gui</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>josch.presentation.gui.model</module>
+        <module>josch.presentation.gui.view</module>
+        <module>josch.presentation.gui.controller</module>
+    </modules>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>14</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-fxml</artifactId>
+            <version>14</version>
+        </dependency>
+        <!-- allows syntax highlighting -->
+        <dependency>
+            <groupId>org.fxmisc.richtext</groupId>
+            <artifactId>richtextfx</artifactId>
+            <version>0.10.4</version>
+        </dependency>
+    </dependencies>
+</project>

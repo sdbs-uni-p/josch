@@ -1,0 +1,707 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Global responsive layout, XmlHighlighting -->
+
+<!-- Content: Tabs, XmlHighlighting -->
+<?import javafx.collections.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<?import josch.presentation.gui.model.fields.IntegerTextField?>
+<?import org.fxmisc.richtext.CodeArea?>
+<?import java.lang.*?>
+<TabPane fx:id="tabPane" GridPane.columnIndex="1" GridPane.rowIndex="2" tabClosingPolicy="UNAVAILABLE"
+         xmlns="http://javafx.com/javafx/8.0.171"
+         xmlns:fx="http://javafx.com/fxml/1">
+        <!-- view tab -->
+        <Tab text="View" fx:id="tabView">
+            <AnchorPane styleClass="in-tab">
+                <!-- View tab layout -->
+                <GridPane hgap="5" vgap="3"
+                          AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0"
+                          AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+
+                    <!-- 3 + 1 + 5 columns -->
+                    <columnConstraints>
+                        <!-- document side 45% -->
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10" percentWidth="15.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10" percentWidth="15.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10" percentWidth="15.0"/>
+
+                        <!-- middle -->
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10" percentWidth="10.0"/>
+
+                        <!-- validator side 45% -->
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10" percentWidth="9.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10" percentWidth="9.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10" percentWidth="9.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10" percentWidth="9.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10" percentWidth="9.0"/>
+                    </columnConstraints>
+
+                    <!-- 4 rows -->
+                    <rowConstraints>
+                        <!-- inner caption -->
+                        <RowConstraints vgrow="SOMETIMES" minHeight="10" percentHeight="5.0"/>
+
+                        <!-- generate row -->
+                        <RowConstraints vgrow="SOMETIMES" minHeight="10" percentHeight="5.0"/>
+
+                        <!-- text area -->
+                        <RowConstraints vgrow="SOMETIMES" minHeight="10" percentHeight="85.0"/>
+
+                        <!-- save row -->
+                        <RowConstraints vgrow="SOMETIMES" minHeight="10" percentHeight="5.0"/>
+                    </rowConstraints>
+                    <!-- end view layout -->
+
+                    <!-- Document side -->
+                    <!-- row 0: Inner Caption -->
+                    <Text text="Document" styleClass="cpt"/>
+                    <!-- end inner caption -->
+
+                    <!-- row 1: show -->
+                    <Button fx:id="btnShowAll" text="Show all" onAction="#showAll"
+                            GridPane.rowIndex="1" GridPane.columnIndex="1"
+                            GridPane.halignment="CENTER"/>
+
+                    <Button fx:id="btnGetSampleDocument" text="Show random" onAction="#getSample"
+                            GridPane.rowIndex="1"
+                            GridPane.halignment="LEFT"/>
+                    <!-- end show -->
+
+                    <!-- row 2: input -->
+                    <CodeArea fx:id="caDocument"
+                              GridPane.columnSpan="3" GridPane.rowIndex="2"/>
+                    <!-- end input -->
+
+                    <!-- row 3: save -->
+                    <Button fx:id="btnInsertDocument" text="Insert" onAction="#insertDocument"
+                            GridPane.columnIndex="2" GridPane.rowIndex="3"
+                            GridPane.halignment="RIGHT"/>
+                    <!-- end save -->
+                    <!-- end Document side -->
+
+                    <!-- Validator side -->
+                    <!-- row 0: inner caption -->
+                    <Text fx:id="cptValidator" text="Validator" styleClass="cpt"
+                          GridPane.columnIndex="4"/>
+
+                    <Button fx:id="btnValidateAll" text="Validate all"
+                            onAction="#validateAll"
+                            GridPane.columnIndex="2"
+                            GridPane.halignment="RIGHT" />
+
+                    <Button fx:id="btnResetValidator" text="Reset" onAction="#resetValidator"
+                            GridPane.columnIndex="8"
+                            GridPane.halignment="RIGHT"/>
+                    <!-- end inner caption -->
+
+                    <!-- row 1: generate -->
+                    <GridPane GridPane.columnIndex="4" GridPane.columnSpan="5"
+                              GridPane.rowIndex="1">
+                        <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" percentWidth="15.0"/>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" percentWidth="20.0"/>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" percentWidth="10.0"/>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" percentWidth="20.0"/>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" percentWidth="15.0"/>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" percentWidth="20.0"/>
+                        </columnConstraints>
+                        <rowConstraints>
+                            <RowConstraints vgrow="SOMETIMES" minHeight="10" percentHeight="100.0" />
+                        </rowConstraints>
+                        <!-- sampling method -->
+                        <Label text="Sample as" />
+
+                        <ComboBox fx:id="slcValMethod" promptText="Method" GridPane.columnIndex="1">
+                            <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                    <String fx:value="absolute"/>
+                                    <String fx:value="relative"/>
+                                </FXCollections>
+                            </items>
+                            <value>
+                                <String fx:value="absolute"/>
+                            </value>
+                        </ComboBox>
+
+                        <!-- end method -->
+
+                        <!-- sampling size -->
+                        <Label text="over" GridPane.columnIndex="2" GridPane.halignment="CENTER"/>
+
+                        <IntegerTextField fx:id="inpValSize" prefWidth="Infinity"
+                                          GridPane.columnIndex="3" />
+                        <!-- end sampling size -->
+
+                        <!-- unit -->
+                        <Label fx:id="txtUnit" text="documents." GridPane.columnIndex="4" />
+
+                        <Button fx:id="btnGenerateValidator" text="Generate"
+                                onAction="#generateValidator" disable="true"
+                                GridPane.columnIndex="5" GridPane.halignment="RIGHT"/>
+
+                    </GridPane>
+                    <!-- end generate -->
+
+                    <!-- row 2: input -->
+                    <CodeArea fx:id="caValidator"
+                              GridPane.columnIndex="4" GridPane.columnSpan="5"
+                              GridPane.rowIndex="2"/>
+                    <!-- end input -->
+
+
+                    <!-- row 3: save -->
+                    <!-- validation level -->
+                    <Label text="Validation level"
+                           GridPane.columnIndex="4" GridPane.rowIndex="3"/>
+
+                    <ComboBox fx:id="slcLevel" prefWidth="Infinity"
+                              GridPane.columnIndex="5" GridPane.rowIndex="3">
+                        <items>
+                            <FXCollections fx:factory="observableArrayList">
+                                <String fx:value="strict"/>
+                                <String fx:value="moderate"/>
+                                <String fx:value="off"/>
+                            </FXCollections>
+                        </items>
+                        <value>
+                            <String fx:value="strict"/>
+                        </value>
+                    </ComboBox>
+                    <!-- end validation level -->
+
+                    <!-- validation action -->
+                    <Label text="Validation action"
+                           GridPane.columnIndex="6" GridPane.rowIndex="3"/>
+                    <ComboBox fx:id="slcAction" prefWidth="Infinity"
+                              GridPane.columnIndex="7"
+                              GridPane.rowIndex="3">
+                        <items>
+                            <FXCollections fx:factory="observableArrayList">
+                                <String fx:value="error"/>
+                                <String fx:value="warn"/>
+                            </FXCollections>
+                        </items>
+                        <value>
+                            <String fx:value="error"/>
+                        </value>
+                    </ComboBox>
+                    <!-- end validation action -->
+
+                    <Button fx:id="btnSaveValidator" text="Save" onAction="#saveValidator"
+                            GridPane.columnIndex="8" GridPane.rowIndex="3"/>
+                    <!-- end save -->
+                    <!-- end Validator side -->
+
+                    <!-- center: validate -->
+                    <Button fx:id="btnValidateDocument" text="Validate this"
+                            onAction="#validateDocument"
+                            GridPane.columnIndex="2" GridPane.rowIndex="1"
+                            GridPane.halignment="RIGHT" />
+                    <!-- end validate -->
+
+                </GridPane>
+                <!-- end view layout -->
+            </AnchorPane>
+        </Tab>
+        <!-- end view tab -->
+
+        <!-- analyze tab -->
+        <Tab text="Analyze" fx:id="tabAnalyze">
+            <AnchorPane styleClass="in-tab">
+                <!-- analyze tab layout -->
+                <GridPane hgap="5" vgap="3"
+                          AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                          AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+
+                    <columnConstraints>
+                        <!-- left side 40% -->
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10" percentWidth="10.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10" percentWidth="20.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10" percentWidth="10.0"/>
+
+                        <!-- center -->
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10" percentWidth="20.0"/>
+
+                        <!-- right side  40% start index: 4 -->
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10" percentWidth="10.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10" percentWidth="20.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10" percentWidth="10.0"/>
+                    </columnConstraints>
+                    <rowConstraints>
+                        <!-- inner caption -->
+                        <RowConstraints vgrow="SOMETIMES" minHeight="10" percentHeight="5.0"/>
+
+                        <!-- dynamic content -->
+                        <RowConstraints vgrow="SOMETIMES" minHeight="10" percentHeight="10.0"/>
+
+                        <!-- input / check -->
+                        <RowConstraints vgrow="SOMETIMES" minHeight="10" percentHeight="75.0"/>
+
+                        <!-- save -->
+                        <RowConstraints vgrow="SOMETIMES" minHeight="10" percentHeight="5.0"/>
+
+                        <!-- generate validator -->
+                        <RowConstraints vgrow="SOMETIMES" minHeight="10" percentHeight="5.0"/>
+                    </rowConstraints>
+                    <!-- end analyze layout. -->
+
+                    <!-- left side -->
+                    <!-- row 0: Inner caption -->
+                    <ComboBox fx:id="slcLeft" styleClass="cb-caption" prefWidth="Infinity"
+                              onAction="#handleLeftSelection"
+                              GridPane.columnSpan="3" GridPane.hgrow="NEVER">
+                        <items>
+                            <FXCollections fx:factory="observableArrayList">
+                                <String fx:value="Legacy JSON Schema"/>
+                                <String fx:value="Current JSON Schema"/>
+                                <String fx:value="New JSON Schema"/>
+                                <String fx:value="Load JSON Schema"/>
+                            </FXCollections>
+                        </items>
+                    </ComboBox>
+                    <!-- end inner caption -->
+
+                    <!-- row 1: dynamic content depending on selection -->
+                    <GridPane fx:id="grdLeftAnalyze" hgap="5" vgap="3"
+                              GridPane.rowIndex="1" GridPane.columnSpan="3">
+                        <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" percentWidth="15.0"/>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" percentWidth="20.0"/>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" percentWidth="10.0"/>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" percentWidth="20.0"/>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" percentWidth="15.0"/>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" percentWidth="20.0"/>
+                        </columnConstraints>
+                        <rowConstraints>
+                            <!-- 1 row -->
+                            <RowConstraints vgrow="SOMETIMES" minHeight="10" percentHeight="100.0"/>
+                        </rowConstraints>
+
+                        <!-- col 1/2: select method -->
+                        <Label text="Analyze as"/>
+
+                        <ComboBox fx:id="leftSlcMethod" promptText="Method"
+                                  GridPane.columnIndex="1">
+                            <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                    <String fx:value="absolute"/>
+                                    <String fx:value="relative"/>
+                                </FXCollections>
+                            </items>
+                            <value>
+                                <String fx:value="absolute"/>
+                            </value>
+                        </ComboBox>
+                        <!-- end method -->
+
+                        <!-- col 3/4: select sample size -->
+                        <Label text="over" GridPane.columnIndex="2" GridPane.halignment="CENTER"/>
+
+                        <IntegerTextField fx:id="leftInpSize" prefWidth="Infinity"
+                                          GridPane.columnIndex="3"/>
+                        <!-- end sample size -->
+
+                        <Label fx:id="leftTxtUnit" text="documents." GridPane.columnIndex="4" />
+
+                        <Button fx:id="leftBtnAnalyze" text="Analyze" onAction="#leftAnalyze"
+                                disable="true" GridPane.columnIndex="5"
+                                GridPane.halignment="RIGHT"/>
+                        <!-- end analysis options -->
+                    </GridPane>
+                    <GridPane fx:id="grdLeftFilter" hgap="5" vgap="3" visible="false"
+                              GridPane.columnSpan="3" GridPane.rowIndex="1">
+                        <!-- 4 columns -->
+                        <columnConstraints>
+                            <!-- min width of dates > 22.5 to display a date completely -->
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" percentWidth="22.5"/>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10"
+                                               percentWidth="28.75"/>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10"
+                                               percentWidth="28.75"/>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" percentWidth="20.0"/>
+                        </columnConstraints>
+                        <!-- 2 rows -->
+                        <rowConstraints>
+                            <RowConstraints vgrow="SOMETIMES" minHeight="10" percentHeight="50.0"/>
+                            <RowConstraints vgrow="SOMETIMES" minHeight="10" percentHeight="50.0"/>
+                        </rowConstraints>
+
+                        <!-- filter date -->
+                        <Label text="Filter date range:"/>
+
+                        <DatePicker fx:id="leftSlcMinDate" GridPane.columnIndex="1"/>
+
+                        <DatePicker fx:id="leftSlcMaxDate" GridPane.columnIndex="2"/>
+
+                        <Button fx:id="leftBtnFilter" text="Filter" onAction="#leftFilter"
+                                GridPane.columnIndex="3" GridPane.halignment="RIGHT"/>
+                        <!-- end date filter -->
+
+                        <!-- row 2: selection: move from 4 to 5 columns -->
+                        <GridPane GridPane.columnSpan="4" GridPane.rowIndex="1">
+                            <columnConstraints>
+                                <!-- buttons have 5% width -->
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10"
+                                                   percentWidth="5"/>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10"
+                                                   percentWidth="5"/>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10"
+                                                   percentWidth="80"/>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10"
+                                                   percentWidth="5"/>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10"
+                                                   percentWidth="5"/>
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints vgrow="SOMETIMES" minHeight="10"
+                                                percentHeight="100.0"/>
+                            </rowConstraints>
+
+                            <Button fx:id="leftBtnFirstSchema" styleClass="i-first, ico"
+                                    onAction="#leftFirstSchema"
+                                    GridPane.halignment="LEFT"/>
+
+                            <Button fx:id="leftBtnPrevSchema" styleClass="i-prev, ico"
+                                    onAction="#leftPrevSchema"
+                                    GridPane.columnIndex="1" GridPane.halignment="CENTER"/>
+
+                            <ComboBox fx:id="leftSlcSchema" promptText="select by date"
+                                      GridPane.columnIndex="2" GridPane.halignment="CENTER"/>
+
+                            <Button fx:id="leftBtnNextSchema" styleClass="i-next, ico"
+                                    onAction="#leftNextSchema"
+                                    GridPane.columnIndex="3" GridPane.halignment="CENTER"/>
+
+                            <Button fx:id="leftBtnLastSchema" styleClass="i-last, ico"
+                                    onAction="#leftLastSchema"
+                                    GridPane.columnIndex="4" GridPane.halignment="RIGHT"/>
+                        </GridPane>
+                        <!-- end selection -->
+                    </GridPane>
+                    <GridPane fx:id="grdLeftLoad" hgap="5" vgap="3"
+                              GridPane.rowIndex="1" GridPane.columnSpan="3" visible="false">
+                        <columnConstraints>
+                            <!-- label -->
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" percentWidth="20.0"/>
+
+                            <!-- path -->
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" percentWidth="55.0"/>
+
+                            <!-- icon -->
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" percentWidth="5.0"/>
+                            <!-- button -->
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" percentWidth="20.0"/>
+                        </columnConstraints>
+                        <rowConstraints>
+                            <!-- 1 row -->
+                            <RowConstraints vgrow="SOMETIMES" minHeight="10" percentHeight="100.0"/>
+                        </rowConstraints>
+
+                        <!-- col 0: label -->
+                        <Label text="Select path: "/>
+
+                        <!-- col 1: path input -->
+                        <TextField fx:id="leftExternalPath" prefWidth="Infinity"
+                                   GridPane.columnIndex="1"/>
+
+                        <!-- col 2: icon -->
+                        <Button styleClass="ico-sm, i-folder" onAction="#leftChooseFile"
+                                GridPane.columnIndex="2"/>
+
+                        <!-- col 3: button -->
+                        <Button text="Load" onAction="#leftLoadFromFile"
+                                GridPane.columnIndex="3" GridPane.halignment="RIGHT"/>
+                    </GridPane>
+
+                    <!-- row 2: input -->
+                    <CodeArea fx:id="leftCodeArea" GridPane.rowIndex="2" GridPane.columnSpan="3"/>
+                    <!-- end input -->
+                    <!-- end analysis -->
+
+                    <!-- row 3: save schema -->
+                    <Label text="Save schema as" GridPane.rowIndex="3"/>
+                    <TextField fx:id="leftInpSave" prefWidth="Infinity"
+                               GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                    <Button fx:id="leftBtnSaveAnalyze" text="Save schema" styleClass="btn-semi"
+                            onAction="#leftStoreSchema"
+                            GridPane.columnIndex="2"
+                            GridPane.rowIndex="3" GridPane.halignment="RIGHT"/>
+
+                    <!-- row 4: generate validator -->
+                    <Button fx:id="leftBtnGenerateValidator" text="Generate validator"
+                            styleClass="btn-wide"
+                            onAction="#leftGenerateValidator"
+                            GridPane.columnSpan="3" GridPane.rowIndex="4"
+                            GridPane.halignment="CENTER"/>
+                    <!-- end left side -->
+
+
+                    <!-- right side -->
+                    <!-- row 0: inner caption -->
+                    <ComboBox fx:id="slcRight" styleClass="cb-caption" prefWidth="Infinity"
+                              onAction="#handleRightSelection"
+                              GridPane.columnIndex="4" GridPane.columnSpan="3">
+                        <items>
+                            <FXCollections fx:factory="observableArrayList">
+                                <String fx:value="Legacy JSON Schema"/>
+                                <String fx:value="Current JSON Schema"/>
+                                <String fx:value="New JSON Schema"/>
+                                <String fx:value="Load JSON Schema"/>
+                            </FXCollections>
+                        </items>
+                    </ComboBox>
+                    <!-- end inner caption -->
+
+                    <!-- row 1: dynamic content -->
+                    <!-- row 1: dynamic content depending on selection -->
+                    <GridPane fx:id="grdRightAnalyze" hgap="5" vgap="3" visible="false"
+                              GridPane.columnIndex="4" GridPane.columnSpan="3"
+                              GridPane.rowIndex="1">
+                        <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" percentWidth="15.0"/>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" percentWidth="20.0"/>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" percentWidth="10.0"/>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" percentWidth="20.0"/>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" percentWidth="15.0"/>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" percentWidth="20.0"/>
+                        </columnConstraints>
+                        <rowConstraints>
+                            <!-- 1 row -->
+                            <RowConstraints vgrow="SOMETIMES" minHeight="10" percentHeight="100.0"/>
+                        </rowConstraints>
+
+                        <!-- col 1/2: select method -->
+                        <Label text="Analyze as"/>
+
+                        <ComboBox fx:id="rightSlcMethod" promptText="Method"
+                                  GridPane.columnIndex="1">
+                            <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                    <String fx:value="absolute"/>
+                                    <String fx:value="relative"/>
+                                </FXCollections>
+                            </items>
+                            <value>
+                                <String fx:value="absolute"/>
+                            </value>
+                        </ComboBox>
+                        <!-- end method -->
+
+                        <!-- col 3/4: select sample size -->
+                        <Label text="over" GridPane.columnIndex="2" GridPane.halignment="CENTER"/>
+
+                        <IntegerTextField fx:id="rightInpSize" prefWidth="Infinity"
+                                          GridPane.columnIndex="3"/>
+                        <!-- end sample size -->
+
+                        <Label fx:id="rightTxtUnit" text="documents." GridPane.columnIndex="4" />
+
+                        <Button fx:id="rightBtnAnalyze" text="Analyze" onAction="#rightAnalyze"
+                                disable="true" GridPane.columnIndex="5"
+                                GridPane.halignment="RIGHT"/>
+                        <!-- end analysis options -->
+                    </GridPane>
+                    <GridPane fx:id="grdRightFilter" hgap="5" vgap="3"
+                              GridPane.columnIndex="4" GridPane.columnSpan="3"
+                              GridPane.rowIndex="1">
+                        <!-- 4 columns -->
+                        <columnConstraints>
+                            <!-- min width of dates > 22.5 to display a date completely -->
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" percentWidth="22.5"/>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10"
+                                               percentWidth="28.75"/>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10"
+                                               percentWidth="28.75"/>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" percentWidth="20.0"/>
+                        </columnConstraints>
+                        <!-- 2 rows -->
+                        <rowConstraints>
+                            <RowConstraints vgrow="SOMETIMES" minHeight="10" percentHeight="50.0"/>
+                            <RowConstraints vgrow="SOMETIMES" minHeight="10" percentHeight="50.0"/>
+                        </rowConstraints>
+
+                        <!-- filter date -->
+                        <Label text="Filter date range:"/>
+
+                        <DatePicker fx:id="rightSlcMinDate" GridPane.columnIndex="1"/>
+
+                        <DatePicker fx:id="rightSlcMaxDate" GridPane.columnIndex="2"/>
+
+                        <Button fx:id="rightBtnFilter" text="Filter" onAction="#rightFilter"
+                                GridPane.columnIndex="3" GridPane.halignment="RIGHT"/>
+                        <!-- end date filter -->
+
+                        <!-- row 2: selection: move from 4 to 5 columns -->
+                        <GridPane GridPane.columnSpan="4" GridPane.rowIndex="1">
+                            <columnConstraints>
+                                <!-- buttons have 5% width -->
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10"
+                                                   percentWidth="5"/>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10"
+                                                   percentWidth="5"/>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10"
+                                                   percentWidth="80"/>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10"
+                                                   percentWidth="5"/>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10"
+                                                   percentWidth="5"/>
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints vgrow="SOMETIMES" minHeight="10"
+                                                percentHeight="100.0"/>
+                            </rowConstraints>
+
+                            <Button fx:id="rightBtnFirstSchema" styleClass="i-first, ico"
+                                    onAction="#rightFirstSchema"
+                                    GridPane.halignment="LEFT"/>
+
+                            <Button fx:id="rightBtnPrevSchema" styleClass="i-prev, ico"
+                                    onAction="#rightPrevSchema"
+                                    GridPane.columnIndex="1" GridPane.halignment="CENTER"/>
+
+                            <ComboBox fx:id="rightSlcSchema" promptText="select by date"
+                                      GridPane.columnIndex="2" GridPane.halignment="CENTER"/>
+
+                            <Button fx:id="rightBtnNextSchema" styleClass="i-next, ico"
+                                    onAction="#rightNextSchema"
+                                    GridPane.columnIndex="3" GridPane.halignment="CENTER"/>
+
+                            <Button fx:id="rightBtnLastSchema" styleClass="i-last, ico"
+                                    onAction="#rightLastSchema"
+                                    GridPane.columnIndex="4" GridPane.halignment="RIGHT"/>
+                        </GridPane>
+                        <!-- end selection -->
+                    </GridPane>
+                    <GridPane fx:id="grdRightLoad" hgap="5" vgap="3"
+                              GridPane.rowIndex="1" GridPane.columnIndex="4" GridPane.columnSpan="3"
+                              visible="false">
+                        <columnConstraints>
+                            <!-- label -->
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" percentWidth="20.0"/>
+
+                            <!-- path -->
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" percentWidth="55.0"/>
+
+                            <!-- icon -->
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" percentWidth="5.0"/>
+                            <!-- button -->
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" percentWidth="20.0"/>
+                        </columnConstraints>
+                        <rowConstraints>
+                            <!-- 1 row -->
+                            <RowConstraints vgrow="SOMETIMES" minHeight="10" percentHeight="100.0"/>
+                        </rowConstraints>
+
+                        <!-- col 0: label -->
+                        <Label text="Select path: "/>
+
+                        <!-- col 1: path input -->
+                        <TextField fx:id="rightExternalPath" prefWidth="Infinity"
+                                   GridPane.columnIndex="1"/>
+
+                        <!-- col 2: icon -->
+                        <Button styleClass="ico-sm, i-folder" onAction="#rightChooseFile"
+                                GridPane.columnIndex="2"/>
+
+                        <!-- col 3: button -->
+                        <Button text="Load" onAction="#rightLoadFromFile"
+                                GridPane.columnIndex="3" GridPane.halignment="RIGHT"/>
+                    </GridPane>
+
+                    <!-- row 2: input -->
+                    <CodeArea fx:id="rightCodeArea" GridPane.columnIndex="4" GridPane.columnSpan="3"
+                              GridPane.rowIndex="2"/>
+                    <!-- end input -->
+
+                    <!-- row 3: save schema -->
+                    <Label text="Save schema as" GridPane.columnIndex="4" GridPane.rowIndex="3"/>
+                    <TextField fx:id="rightInpSave" prefWidth="Infinity"
+                               GridPane.columnIndex="5" GridPane.rowIndex="3"/>
+                    <Button fx:id="rightBtnSaveAnalyze" text="Save schema"
+                            styleClass="btn-semi"
+                            onAction="#rightStoreSchema"
+                            GridPane.columnIndex="6" GridPane.rowIndex="3"
+                            GridPane.halignment="CENTER"/>
+                    <!-- end save schema -->
+
+                    <!-- row 4: generate validator -->
+                    <Button fx:id="rightBtnGenerateValidator" text="Generate validator"
+                            styleClass="btn-wide"
+                            onAction="#rightGenerateValidator"
+                            GridPane.columnIndex="4" GridPane.columnSpan="3"
+                            GridPane.rowIndex="4"
+                            GridPane.halignment="CENTER"/>
+                    <!-- end right side -->
+
+                    <!-- Center: Comparison -->
+                    <GridPane vgap="3" hgap="3" GridPane.rowIndex="2" GridPane.columnIndex="3">
+                        <!-- layout -->
+                        <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" prefWidth="100"/>
+                        </columnConstraints>
+                        <rowConstraints>
+                            <!-- containment 48% -->
+                            <!-- label -->
+                            <RowConstraints vgrow="SOMETIMES" percentHeight="10.0"/>
+                            <!-- input -->
+                            <RowConstraints vgrow="SOMETIMES" percentHeight="10.0"/>
+                            <!-- button -->
+                            <RowConstraints vgrow="SOMETIMES" percentHeight="10.0"/>
+                            <!-- result -->
+                            <RowConstraints vgrow="SOMETIMES" percentHeight="18.0"/>
+
+                            <!-- separator -->
+                            <RowConstraints vgrow="SOMETIMES" percentHeight="4.0"/>
+
+                            <!-- syntax  48% -->
+                            <!-- label -->
+                            <RowConstraints vgrow="SOMETIMES" percentHeight="15.0"/>
+                            <!-- button -->
+                            <RowConstraints vgrow="SOMETIMES" percentHeight="15.0"/>
+                            <!-- result -->
+                            <RowConstraints vgrow="SOMETIMES" percentHeight="18.0"/>
+
+                        </rowConstraints>
+
+                        <!-- Schema containment (Semantics) -->
+                        <Label text="Check containment using"
+                               wrapText="true" GridPane.halignment="CENTER"/>
+                        <ComboBox fx:id="slcCompare" promptText="Method"
+                                  GridPane.rowIndex="1" GridPane.halignment="CENTER"/>
+
+                        <Button fx:id="btnContainment" text="Check containment"
+                                styleClass="btn-wide"
+                                onAction="#checkContainment"
+                                GridPane.rowIndex="2"
+                                GridPane.halignment="CENTER"/>
+
+                        <!-- Result -->
+                        <Button fx:id="btnContainmentResult" styleClass="ico-compare, i-is-eqv"
+                                GridPane.rowIndex="3" GridPane.halignment="CENTER"/>
+                        <!-- end result -->
+                        <!-- end containment -->
+
+                        <!-- separator -->
+                        <Separator maxWidth="Infinity"  GridPane.rowIndex="4"/>
+
+                        <!-- syntax check -->
+                        <Label text="Check syntactical equality"
+                               wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="5"/>
+
+                        <Button fx:id="btnSyntax" text="Check syntax" styleClass="btn-wide"
+                                onAction="#checkSyntax"
+                                GridPane.rowIndex="6" GridPane.halignment="CENTER"/>
+
+                        <Button fx:id="btnSyntaxResult" styleClass="ico-compare, i-is-eq"
+                                GridPane.rowIndex="7" GridPane.halignment="CENTER"/>
+                        <!-- end syntax -->
+                    </GridPane>
+                </GridPane>
+            </AnchorPane>
+        </Tab>
+        <!-- end analyze tab -->
+    </TabPane>
+    <!-- end tabs -->

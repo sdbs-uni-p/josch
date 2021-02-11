@@ -1,0 +1,346 @@
+@import "datepicker.css";
+@import "text.css";
+
+/*
+    This is the main stylesheet for the Josch application. It defines the styling of JavaFX
+    elements and classes that are used in several views in order to avoid code duplication.
+    If there exists an element or class within exactly a single view that element or class will be
+    defined in the view's css. If the view doesn't have such an element or class it also won't have
+    an individual css.
+
+    CSS is formatted by Google's HTML/CSS Style Guide. Note that the following rules apply:
+    - IDs and class names are as short as possible but as long as necessary.
+    - Use shorthand properties whenever possible.
+    - alphabetize declarations
+ */
+
+.root {
+    -fx-background-color: -fx-bg;
+    -fx-text-fill: -fx-bg-hc;
+    -fx-faint-focus-color: transparent;
+    -fx-focus-color: transparent;
+
+    /* overwrite default highlighting */
+    -fx-accent: -fx-col-main;
+}
+
+/* alignment in grids */
+.align-center {
+    -fx-alignment: CENTER;
+}
+
+.align-center-right {
+    -fx-alignment: CENTER-RIGHT;
+}
+
+/* Background */
+AnchorPane {
+    -fx-background-color: -fx-bg;
+    -fx-padding: 5 20 5 20; /** top right bottom left */
+}
+
+/* class to set the outer AnchorPane light and match the tab header to the background. */
+.bg-light, .tab-header-background {
+    -fx-background-color: -fx-bg-light;
+}
+
+/** class with main background */
+.bg-white {
+    -fx-background-color: -fx-bg;
+}
+
+/* Buttons */
+.button {
+    -fx-border-color: -fx-gradient;
+    -fx-border-width: 1;
+    -fx-border-radius: 3;
+    -fx-background-color: transparent;
+    -fx-font: normal normal 14 sans-serif;
+    -fx-max-height: 30;
+    -fx-pref-height: 30;
+    -fx-pref-width: 120;
+    -fx-text-alignment: center;
+    -fx-text-fill: -fx-bg-hc;
+}
+
+.btn-wide {
+    -fx-pref-width: 200;
+}
+
+.btn-semi {
+    -fx-pref-width: 150;
+}
+
+/* Checkbox styling  */
+.check-box .box {
+    -fx-background-color: -fx-bg-light;
+    -fx-border-width: 0;
+    -fx-shadow-highlight-color: transparent;
+}
+
+/* Change color when selected */
+.check-box:selected .box {
+    -fx-background-color: -fx-col-main;
+    -fx-border-color: transparent;
+    -fx-shape: none;
+}
+
+.check-box:selected .box .mark {
+    -fx-background-color: -fx-bg;
+}
+
+/* code area styling */
+.code-area .selection {
+    -fx-fill: derive(-fx-col-main, 50%);
+}
+
+.code-area .lineno {
+    -fx-background-color: -fx-bg-light;
+}
+
+.code-area .lineno .text {
+    -fx-fill: -fx-bg-dark;
+}
+
+.code-area, .code-area .text {
+    -fx-background-color: -fx-bg;
+    -fx-border-color: -fx-bg-mid;
+    -fx-border-width: 1;
+}
+
+/* Drop down styling */
+ .combo-box .list-cell {
+    -fx-background-color: -fx-bg;
+    -fx-border-color: -fx-bg-mid;
+    -fx-border-width: 0;
+    -fx-text-fill: -fx-bg-hc;
+}
+
+.combo-box  {
+    -fx-background-color: -fx-bg;
+    -fx-border-color: -fx-bg-mid;
+    -fx-border-width: 1;
+    -fx-text-fill: -fx-bg-hc;
+}
+
+.combo-box .list-cell:selected {
+    -fx-background-color: -fx-bg;
+    -fx-text-fill: -fx-bg-hc; /* black */
+}
+
+.combo-box .list-cell:hover {
+    -fx-background-color: -fx-col-main;
+    -fx-text-fill: -fx-bg-hc;
+}
+
+.combo-box > .arrow-button, .date-picker > .arrow-button {
+    -fx-background-color: -fx-bg;
+    -fx-shadow-highlight-color: transparent;
+}
+
+.combo-box > .arrow-button > .arrow {
+    -fx-background-color: -fx-gradient;
+}
+
+.content {
+    -fx-background-color: -fx-bg-light;
+}
+
+/* revert the buttons */
+.date-picker-popup > * > .spinner > .button {
+    -fx-border-color: transparent;
+    -fx-border-width: -1;
+    -fx-background-color: transparent;
+    -fx-font: normal normal 14 sans-serif;
+    -fx-text-alignment: center;
+    -fx-text-fill: -fx-bg-hc;
+}
+
+.date-picker-popup > * > .today {
+    -fx-background-color: -fx-control-inner-background, -fx-sh-kw, -fx-control-inner-background;
+    -fx-background-insets: 1, 2, 3;
+}
+
+.date-picker-popup > * > .today:hover,
+.date-picker-popup > * > .today.selected {
+    -fx-background-color: -fx-col-main, -fx-sh-kw, -fx-col-main;
+}
+
+/* hover and selection */
+.date-picker-popup > * > .day-cell:hover,
+.date-picker-popup > * > .selected,
+.date-picker-popup > * > .previous-month.selected,
+.date-picker-popup > * > .next-month.selected {
+    -fx-background: -fx-col-main;
+}
+
+/* dialogues */
+.dialogue {
+    -fx-background: -fx-bg;
+    -fx-background-color: -fx-bg;
+    -fx-border-color: -fx-bg-mid;
+    -fx-border-width: 1;
+}
+
+/* document styling */
+.docs {
+    -fx-background-color: -fx-bg;
+    -fx-font: normal normal 14 sans-serif;
+}
+
+/* grid pane gaps */
+GridPane {
+    -fx-hgap: 5;
+    -fx-vgap: 20;
+}
+
+/* class for inner AnchorPane as the tab content */
+.in-tab {
+    -fx-padding: 20 20 20 20;
+}
+
+/* progress icon */
+.progress-indicator {
+    -fx-accent: -fx-col-main;
+}
+
+/* scroll bar and pane styling */
+.scroll-pane > .viewport {
+    -fx-background-color: -fx-bg;
+    -fx-border-width: 0;
+}
+
+.scroll-pane.edge-to-edge,
+.tab-pane > * > .scroll-pane {
+    -fx-background-color: -fx-bg;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+
+/* scroll bar track: the "way" (track) of the bar */
+.scroll-bar:horizontal .track, .scroll-bar:vertical .track,
+.scroll-pane > .scroll-bar:horizontal .track,
+.scroll-pane > .scroll-bar:vertical .track,
+.scroll-pane > .scroll-bar:horizontal,
+.scroll-pane > .scroll-bar:vertical {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0.0em;
+    -fx-border-color: transparent;
+    -fx-border-radius: 2.0em;
+}
+
+/* hide horizontal increment and decrement button background */
+.scroll-bar:horizontal .increment-button, .scroll-bar:horizontal .decrement-button,
+.scroll-pane > .scroll-bar:horizontal .increment-button,
+.scroll-pane > .scroll-bar:horizontal .decrement-button {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0.0em;
+    -fx-padding: 0.0 0.0 10.0 0.0;
+}
+
+/* hide the actual button. */
+.scroll-bar .increment-arrow, .scroll-bar .decrement-arrow,
+.scroll-pane > .scroll-bar .increment-arrow,
+.scroll-pane > .scroll-bar .decrement-arrow {
+    -fx-shape: " ";
+    -fx-padding: 0.15em 0.0;
+}
+
+/* hide vertical increment and decrement button background. */
+.scroll-bar:vertical .increment-button, .scroll-bar:vertical .decrement-button,
+.scroll-pane > .scroll-bar:vertical .increment-button,
+.scroll-pane > .scroll-bar:vertical .decrement-button {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0.0em;
+    -fx-padding: 0.0 10.0 0.0 0.0;
+
+}
+
+/* hide the actual button. */
+.scroll-bar:vertical .increment-arrow, .scroll-bar:vertical .decrement-arrow,
+.scroll-pane > .scroll-bar:vertical .increment-arrow,
+.scroll-pane > .scroll-bar:vertical .decrement-arrow {
+    -fx-shape: " ";
+    -fx-padding: 0.0 0.15em;
+}
+
+/* the scrollable bar styling  */
+.scroll-bar:horizontal .thumb, .scroll-bar:vertical .thumb,
+.scroll-pane > .scroll-bar:horizontal .thumb,
+.scroll-pane > .scroll-bar:vertical .thumb {
+    -fx-background-color: -fx-bg-dark;
+    -fx-background-insets: 2.0, 0.0, 0.0;
+    -fx-background-radius: 2.0em;
+}
+
+/* scrollable bar on hover */
+.scroll-bar:horizontal .thumb:hover, .scroll-bar:vertical .thumb:hover,
+.scroll-pane > .scroll-bar:horizontal .thumb:hover,
+.scroll-pane > .scroll-bar:vertical .thumb:hover {
+    -fx-background-color: -fx-gradient;
+    -fx-background-insets: 2.0, 0.0, 0.0;
+    -fx-background-radius: 2.0em;
+}
+
+.separator *.line {
+    -fx-border-style: solid;
+    -fx-border-width: 2;
+    -fx-border-color: -fx-bg-mid;
+}
+
+/* styling for tabs */
+.tab, .tab .text {
+    -fx-background-color: -fx-bg-mid;
+    -fx-font: normal bold 14 sans-serif;
+    -fx-fill: -fx-bg-hc;
+}
+
+.tab:selected:top {
+    -fx-background-color: -fx-bg;
+    -fx-fill: -fx-bg-hc;
+}
+
+/* table styling */
+.table-view:focused {
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header, .table-view .filler {
+    -fx-border-width: 0;
+}
+
+.table-view .column-header-background .label, .table-view .column-header-background .filler {
+    -fx-background-color: -fx-bg-dark;
+    -fx-font-weight: bold;
+    -fx-text-fill: -fx-bg;
+}
+
+.table-view .column-header {
+    -fx-background-color: -fx-bg-light;
+}
+
+.table-view .tabtable-cell {
+    -fx-padding: 0 15 0 15; /** top right bottom left */
+    -fx-alignment: CENTER-LEFT;
+}
+
+.table-row-cell {
+    -fx-background: -fx-bg;
+    -fx-background-color: -fx-bg;
+    -fx-text-fill: -fx-bg-hc;
+}
+
+.table-row-cell:odd {
+    -fx-background: -fx-bg-light;
+    -fx-background-color: -fx-bg-light;
+}
+
+/* text styling */
+.text-dialogue {
+    -fx-font: normal normal 16 sans-serif;
+    -fx-fill: -fx-bg-hc;
+}
+
+.veil {
+    -fx-background-color: -fx-bg-veil;
+}

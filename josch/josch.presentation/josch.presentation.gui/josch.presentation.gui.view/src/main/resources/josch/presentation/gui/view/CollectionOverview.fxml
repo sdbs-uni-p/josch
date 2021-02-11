@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.GridPane?>
+<TableView xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8"
+           fx:id="grdCollections" editable="true"
+           GridPane.rowIndex="2" GridPane.columnIndex="1" GridPane.columnSpan="2"/>
+

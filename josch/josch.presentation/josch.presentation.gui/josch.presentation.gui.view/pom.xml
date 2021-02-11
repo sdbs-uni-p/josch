@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>josch.presentation.gui</artifactId>
+        <groupId>de.passau.uni.fim.josch.presentation.gui</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>de.passau.uni.fim.josch.presentation.gui.view</groupId>
+    <artifactId>josch.presentation.gui.view</artifactId>
+
+    <dependencies>
+        <!-- for custom properties -->
+        <dependency>
+            <groupId>de.passau.uni.fim.josch.presentation.gui.model</groupId>
+            <artifactId>josch.presentation.gui.model</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+</project>

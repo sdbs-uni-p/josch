@@ -1,0 +1,15 @@
+{
+  "name": "isJsonSchemaSubset",
+  "main": "i_ijs_subset.js",
+  "scripts": {
+    "start": "node -r esm i_ijs_subset.js"
+  },
+  "dependencies": {
+    "esm": "^3.2.25",
+    "is-json-schema-subset": "^1.1.24",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "jsonfile": "^6.0.1"
+  }
+}

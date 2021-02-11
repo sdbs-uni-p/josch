@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>josch.services</artifactId>
+        <groupId>de.passau.uni.fim.josch.services</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>josch.services.factory</artifactId>
+    <dependencies>
+        <dependency>
+            <groupId>de.passau.uni.fim.josch.services.extraction</groupId>
+            <artifactId>josch.services.extraction.hackolade</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>de.passau.uni.fim.josch.services.persistency</groupId>
+            <artifactId>josch.services.persistency</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>de.passau.uni.fim.josch.services.validation</groupId>
+            <artifactId>josch.services.validation</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>de.passau.uni.fim.josch.services.comparison</groupId>
+            <artifactId>josch.services.comparison.jsonsubschema</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>de.passau.uni.fim.josch.services.comparison</groupId>
+            <artifactId>josch.services.comparison.ijssubset</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>de.passau.uni.fim.josch.test.MongoDB</groupId>
+            <artifactId>josch.test.MongoDB</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>de.passau.uni.fim.josch.services.extraction.jsi</groupId>
+            <artifactId>josch.services.extraction.jsi</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
+
+
+</project>

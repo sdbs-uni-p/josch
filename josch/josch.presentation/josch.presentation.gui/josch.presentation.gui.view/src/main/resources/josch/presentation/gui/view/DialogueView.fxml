@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This class defines the view of the dialogue windows. It defines the padding and the basic elements.
+Dynamic elements such as buttons that may or may not be present are handled by the controller.
+
+@author Kai Dauberschmidt
+-->
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<GridPane fx:id="layout" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+          alignment="CENTER" prefHeight="Infinity" prefWidth="Infinity" styleClass="dialogue"
+          vgap="5" hgap="5">
+    <columnConstraints>
+        <!-- padding left -->
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10" percentWidth="2.5"/>
+        <!-- icon -->
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10" percentWidth="9.0"/>
+        <!-- content -->
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10" percentWidth="43.0"/>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10" percentWidth="43.0"/>
+        <!-- padding right -->
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10" percentWidth="2.5"/>
+    </columnConstraints>
+    <rowConstraints>
+        <!-- padding top -->
+        <RowConstraints vgrow="SOMETIMES" minHeight="10" percentHeight="2.5"/>
+        <!-- text -->
+        <RowConstraints vgrow="SOMETIMES" minHeight="10" percentHeight="80.0"/>
+        <!-- buttons: pref height = 30 -> 30/200 * 100 = 15% -->
+        <RowConstraints vgrow="SOMETIMES" minHeight="10" percentHeight="15.0"/>
+        <!-- padding bottom -->
+        <RowConstraints vgrow="SOMETIMES" minHeight="10" percentHeight="2.5"/>
+    </rowConstraints>
+
+    <Text fx:id="notification" styleClass="text-dialogue" wrappingWidth="500"
+            GridPane.columnIndex="2" GridPane.columnSpan="2"
+            GridPane.rowIndex="1"/>
+
+</GridPane>

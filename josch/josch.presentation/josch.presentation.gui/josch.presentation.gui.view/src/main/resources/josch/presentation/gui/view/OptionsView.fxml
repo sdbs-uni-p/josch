@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This OptionsView.fxml defines the inner view of options. The user is able to set and store the system
+settings and connect with the specified database. This is a leaf of the composite pattern. While
+it could be a composite as well (making the tabs leaves) this is not being implemented by choice,
+because the tabs are interacting with one another. They should not be considered separate
+functionality but rather separation for subsequences in order to increase readability for the user.
+
+@author Kai Dauberschmidt
+-->
+<?language javascript?>
+
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<?import josch.presentation.gui.model.fields.IntegerTextField?>
+<?import java.lang.*?>
+<TabPane GridPane.columnIndex="1" GridPane.rowIndex="2" tabClosingPolicy="UNAVAILABLE"
+         xmlns="http://javafx.com/javafx/8.0.171"
+         xmlns:fx="http://javafx.com/fxml/1">
+
+    <!-- Server Settings -->
+    <Tab text="Server Settings">
+        <AnchorPane styleClass="in-tab">
+            <GridPane fx:id="serverRoot" hgap="5" vgap="3"
+                      AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0"
+                      AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
+                <!-- has 3 fields per row => 6 columns
+                     each label has 10%, small field also 10% and regular ones 30% -->
+                <columnConstraints>
+                    <!-- first field -->
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10" percentWidth="10.0"/>
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10" percentWidth="20.0"/>
+
+                    <!-- second field -->
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10" percentWidth="10.0"/>
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10" percentWidth="10.0"/>
+
+                    <!-- logo -->
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10" percentWidth="50.0"/>
+                </columnConstraints>
+
+                <!-- the rows of the server settings -->
+                <rowConstraints>
+                    <!-- inner caption -->
+                    <RowConstraints vgrow="SOMETIMES" minHeight="10" percentHeight="30.0"/>
+
+                    <!-- url -->
+                    <RowConstraints vgrow="SOMETIMES" minHeight="10" percentHeight="10.0"/>
+
+                    <!-- Host and Port -->
+                    <RowConstraints vgrow="SOMETIMES" minHeight="10" percentHeight="10.0"/>
+
+
+                    <!-- User data: username, password -->
+                    <RowConstraints vgrow="SOMETIMES" minHeight="10" percentHeight="10.0"/>
+
+                    <!-- database and save -->
+                    <RowConstraints vgrow="SOMETIMES" minHeight="10" percentHeight="10.0"/>
+
+                    <!-- Connect button -->
+                    <RowConstraints vgrow="SOMETIMES" minHeight="10" percentHeight="10.0"/>
+
+                    <!-- blank space -->
+                    <RowConstraints vgrow="SOMETIMES" minHeight="10" percentHeight="20"/>
+                </rowConstraints>
+
+                <!-- inner caption -->
+                <Text fx:id="cptServerSettings" text="Server settings" styleClass="cpt"/>
+
+                <!-- url -->
+                <Label fx:id="txtUrl" text="URL:" GridPane.rowIndex="1"/>
+
+                <TextField fx:id="inpUrl" onKeyReleased="#urlIsEmpty"
+                           GridPane.columnIndex="1" GridPane.columnSpan="3"
+                           GridPane.rowIndex="1"/>
+
+                <!-- row 2 -->
+                <!-- host -->
+                <Label fx:id="txtHost" text="Host:" GridPane.rowIndex="2"/>
+
+                <TextField fx:id="inpHost" onKeyReleased="#disableButton"
+                           GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+                <!-- port -->
+                <Label fx:id="txtPort" text="Port:"
+                       GridPane.columnIndex="2" GridPane.rowIndex="2"/>
+
+                <IntegerTextField fx:id="inpPort" onKeyReleased="#disableButton"
+                                  GridPane.columnIndex="3" GridPane.rowIndex="2"/>
+
+                <!-- row 3 -->
+                <!-- user -->
+                <Label fx:id="txtUser" text="Username:" GridPane.rowIndex="3"/>
+
+                <TextField fx:id="inpUser" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+
+                <!-- password -->
+                <Label fx:id="txtPwd" text="Password:"
+                       GridPane.columnIndex="2" GridPane.rowIndex="3"/>
+
+                <PasswordField fx:id="inpPwd" GridPane.columnIndex="3" GridPane.rowIndex="3"/>
+
+                <!-- row 4 -->
+                <!-- database -->
+                <Label fx:id="txtDb" text="Database:" GridPane.rowIndex="4"/>
+
+                <TextField fx:id="inpDb" GridPane.columnIndex="1" GridPane.columnSpan="3"
+                           GridPane.rowIndex="4"/>
+
+
+                <!-- row 5: save and connect -->
+                <!-- save settings -->
+                <Label fx:id="txtSave" text="Save Settings" GridPane.rowIndex="5"/>
+
+                <CheckBox fx:id="cbSave" selected="true" GridPane.columnIndex="1"
+                          GridPane.rowIndex="5"/>
+
+                <Button fx:id="btnConnect" text="connect" disable="#disableButton"
+                        onAction="#connect"
+                        GridPane.columnIndex="3" GridPane.rowIndex="5"
+                        GridPane.halignment="RIGHT"/>
+                <!-- end connect -->
+
+                <!-- Logo -->
+                <ImageView fx:id="imgLogo" preserveRatio="true"
+                           GridPane.columnIndex="4"
+                           GridPane.rowIndex="1" GridPane.rowSpan="5"
+                           GridPane.valignment="CENTER" GridPane.halignment="CENTER">
+                    <Image url="@images/sq_logo.png"/>
+                </ImageView>
+
+            </GridPane>
+        </AnchorPane>
+    </Tab>
+
+    <!-- System Settings -->
+    <Tab text="System Settings">
+        <AnchorPane styleClass="in-tab">
+            <GridPane hgap="5" vgap="3" fx:id="systemRoot"
+                      AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0"
+                      AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
+                <!-- 3 columns -->
+                <columnConstraints>
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10" percentWidth="10.0"/>
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10" percentWidth="20.0"/>
+
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10" percentWidth="10.0"/>
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10" percentWidth="20.0"/>
+
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10" percentWidth="50.0"/>
+                </columnConstraints>
+
+                <!-- 1 caption and 5 options.  -->
+                <rowConstraints>
+                    <RowConstraints vgrow="SOMETIMES" minHeight="10" percentHeight="30"/>
+                    <RowConstraints vgrow="SOMETIMES" minHeight="10" percentHeight="10"/>
+                    <RowConstraints vgrow="SOMETIMES" minHeight="10" percentHeight="10"/>
+                    <RowConstraints vgrow="SOMETIMES" minHeight="10" percentHeight="10"/>
+                    <RowConstraints vgrow="SOMETIMES" minHeight="10" percentHeight="10"/>
+                    <RowConstraints vgrow="SOMETIMES" minHeight="10" percentHeight="10"/>
+                    <RowConstraints vgrow="SOMETIMES" minHeight="10" percentHeight="20"/>
+                </rowConstraints>
+
+                <Text fx:id="cptSystemSettings" text="System settings" styleClass="cpt"/>
+
+                <!-- database system -->
+                <Label fx:id="txtDbSystem" text="Database:" GridPane.rowIndex="1"/>
+
+                <ComboBox fx:id="slcDbSystem" prefWidth="Infinity"
+                          GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+
+                <!-- timeout -->
+                <Label fx:id="txtTimeout" text="Timeout (ms):"
+                       GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+
+                <IntegerTextField fx:id="inpTimeout"
+                                  GridPane.columnIndex="3"
+                                  GridPane.rowIndex="1"/>
+
+
+                <!-- extraction tool -->
+                <Label fx:id="txtExtract" text="Extraction tool:" GridPane.rowIndex="2"/>
+                <ComboBox fx:id="slcExtract" prefWidth="Infinity" onAction="#renderName"
+                          GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+                <!-- additional input -->
+                <Label fx:id="txtConnectName" text="Hackolade name:"
+                       GridPane.columnIndex="2" GridPane.rowIndex="2"/>
+                <TextField fx:id="inpConnectName"
+                           GridPane.columnIndex="3" GridPane.rowIndex="2"/>
+
+                <!-- containment tool -->
+                <Label fx:id="txtCompare" text="Containment tool:" GridPane.rowIndex="3"/>
+
+                <ComboBox fx:id="slcCompare" prefWidth="Infinity"
+                          GridPane.columnIndex="1" GridPane.columnSpan="3"
+                          GridPane.rowIndex="3" />
+
+                <!-- theme tool -->
+                <Label fx:id="txtTheme" text="Color scheme:" GridPane.rowIndex="4"/>
+
+                <ComboBox fx:id="slcTheme" prefWidth="Infinity" onAction="#setTheme"
+                          GridPane.columnIndex="1" GridPane.columnSpan="3"
+                          GridPane.rowIndex="4">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="default"/>
+                            <String fx:value="blue"/>
+                            <String fx:value="dark"/>
+                            <String fx:value="papercut"/>
+                        </FXCollections>
+                    </items>
+                    <value>
+                        <String fx:value="default"/>
+                    </value>
+                </ComboBox>
+
+
+                <!-- Logo -->
+                <ImageView fx:id="imgLogoOptions" preserveRatio="true"
+                           GridPane.columnIndex="4" GridPane.rowIndex="1" GridPane.rowSpan="5"
+                           GridPane.valignment="CENTER" GridPane.halignment="CENTER">
+                    <Image url="@images/sq_logo.png"/>
+                </ImageView>
+            </GridPane>
+        </AnchorPane>
+    </Tab>
+
+    <!-- Folder Settings -->
+    <Tab text="Tool Settings">
+        <AnchorPane styleClass="in-tab">
+            <GridPane hgap="5" vgap="3"
+                      AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0"
+                      AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
+                <!-- 3 columns -->
+                <columnConstraints>
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10" percentWidth="45.0"/>
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10" percentWidth="5.0"/>
+
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10" percentWidth="50.0"/>
+                </columnConstraints>
+
+                <!-- 1 caption and 5 options.  -->
+                <rowConstraints>
+                    <RowConstraints vgrow="SOMETIMES" minHeight="10" percentHeight="30"/>
+                    <RowConstraints vgrow="SOMETIMES" minHeight="10" percentHeight="10"/>
+                    <RowConstraints vgrow="SOMETIMES" minHeight="10" percentHeight="10"/>
+                    <RowConstraints vgrow="SOMETIMES" minHeight="10" percentHeight="10"/>
+                    <RowConstraints vgrow="SOMETIMES" minHeight="10" percentHeight="10"/>
+                    <RowConstraints vgrow="SOMETIMES" minHeight="10" percentHeight="10"/>
+                    <RowConstraints vgrow="SOMETIMES" minHeight="10" percentHeight="20"/>
+                </rowConstraints>
+
+                <Text text="Tool Settings" styleClass="cpt" GridPane.columnSpan="2"/>
+
+                <!-- IJS -->
+                <Label text="Select Is JSON Schema Subset Folder:"
+                       GridPane.columnSpan="2" GridPane.rowIndex="1"/>
+                <TextField fx:id="folderIJS" GridPane.rowIndex="2"/>
+                <Button fx:id="btnIJS" styleClass="ico-sm, i-folder"
+                        onAction="#chooseIjsFolder"
+                        GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+                <Label text="Select JSON Subschema Folder:"
+                       GridPane.columnSpan="2" GridPane.rowIndex="3"/>
+                <TextField fx:id="folderJSS" GridPane.rowIndex="4"/>
+                <Button fx:id="btnJSS" styleClass="ico-sm, i-folder"
+                        onAction="#chooseJssFolder"
+                        GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+
+
+                <!-- Logo -->
+                <ImageView fx:id="imgLogoSettings" preserveRatio="true"
+                           GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.rowSpan="5"
+                           GridPane.valignment="CENTER" GridPane.halignment="CENTER">
+                    <Image url="@images/sq_logo.png"/>
+                </ImageView>
+            </GridPane>
+        </AnchorPane>
+    </Tab>
+
+    <!-- licence tab -->
+    <Tab text="License">
+        <AnchorPane styleClass="in-tab">
+            <GridPane hgap="5" vgap="3"
+                      AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0"
+                      AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
+                <!-- 1 columns -->
+                <columnConstraints>
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10" percentWidth="100.0"/>
+                </columnConstraints>
+
+                <!-- 1 caption, description text and a table.  -->
+                <rowConstraints>
+                    <RowConstraints vgrow="SOMETIMES" minHeight="10" percentHeight="5.0"/>
+                    <RowConstraints vgrow="SOMETIMES" minHeight="10" percentHeight="2.5"/>
+                    <RowConstraints vgrow="SOMETIMES" minHeight="10" percentHeight="92.5"/>
+                </rowConstraints>
+
+                <!-- caption -->
+                <Text text="Licenses" styleClass="cpt"/>
+
+                <!-- description -->
+                <Label GridPane.rowIndex="1">
+                    Josch is using the following software in the according versions with the
+                    respective licences. When there is no version given, the version is either
+                    the newest or it depends on your installed version.
+                </Label>
+
+                <ScrollPane fx:id="licenseScrollPane" GridPane.rowIndex="2" styleClass="edge-to-edge">
+                    <GridPane fx:id="licenseList" >
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10" percentWidth="50.0"/>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10" percentWidth="20.0"/>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10" percentWidth="30.0"/>
+                            </columnConstraints>
+                    </GridPane>
+                </ScrollPane>
+            </GridPane>
+        </AnchorPane>
+    </Tab>
+</TabPane>

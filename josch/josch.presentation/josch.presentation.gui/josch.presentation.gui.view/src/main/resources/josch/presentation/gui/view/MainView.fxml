@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This mainView is used as the component in the composite pattern. It defines the frame of the
+application's views. It adds padding to the content. It also defines the areas that are going
+to be used by the composites. It is designed in a fluid layout.
+
+@author Kai Dauberschmidt
+-->
+
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<StackPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity"
+           minHeight="-Infinity"
+           minWidth="-Infinity" prefHeight="766"
+           prefWidth="1366.0">
+    <GridPane stylesheets="@css/main.css, @css/icons.css"
+              styleClass="bg-light" xmlns="http://javafx.com/javafx/8">
+
+        <!-- left/right margin: 2.5% -->
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" percentWidth="2.5"/>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" percentWidth="95.0"/>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" percentWidth="2.5"/>
+        </columnConstraints>
+
+        <!-- top/bottom margin: 2.5% -->
+        <rowConstraints>
+            <RowConstraints vgrow="SOMETIMES" minHeight="10" percentHeight="2.5"/>
+            <RowConstraints vgrow="SOMETIMES" minHeight="10" percentHeight="2.5"/>
+            <RowConstraints vgrow="SOMETIMES" minHeight="10" percentHeight="92.5"/>
+            <RowConstraints vgrow="SOMETIMES" minHeight="10" percentHeight="2.5"/>
+        </rowConstraints>
+
+        <!-- Content -->
+        <!-- Headline -->
+        <GridPane hgap="5" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <!-- 2 columns: icon and caption -->
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="2.5"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="97.5"/>
+            </columnConstraints>
+            <!-- 1 row -->
+            <rowConstraints>
+                <RowConstraints vgrow="SOMETIMES" minHeight="10.0" percentHeight="100.0"/>
+            </rowConstraints>
+
+            <!-- Headline content -->
+            <!-- The button to navigate back to the previous view -->
+            <Button fx:id="btnBack" styleClass="i-back, ico" text="Back" onAction="#back"
+                    GridPane.valignment="CENTER"/>
+
+            <!-- The caption of the headline -->
+            <Text fx:id="caption" styleClass="cpt" GridPane.columnIndex="1"
+                  GridPane.valignment="CENTER"/>
+        </GridPane>
+        <!-- End Headline -->
+
+        <!-- Actual content -->
+        <AnchorPane fx:id="content" styleClass="content" GridPane.columnIndex="1"
+                    GridPane.rowIndex="2"/>
+        <!-- End Actual content -->
+    </GridPane>
+    <Region fx:id="veil" styleClass="veil" visible="false" />
+</StackPane>

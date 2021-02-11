@@ -1,0 +1,30 @@
+/*
+  This stylesheet is used to define the colors of the main colors of the application. All colors
+  used are supposed to meet the requirements of the Web Content Accessibility Guidelines (WCAG) from
+  the World Wide Web Consortium (W3C).  Even though the application is no web application, these
+  WCAG are suited best for graphical user interfaces.
+
+  Note on the naming convention: Variables in regular css are defined as --variable-name and
+  are accessed via var(--variable-name). JavaFX css slightly differs from regular css. By their
+  naming convention variable names should be named and with both: -fx-variable-name, which this
+  application tries to stick to.
+ */
+.root {
+    /* colors that pass AA on UI Components. Do not use this as text! */
+    -fx-gradient: linear-gradient(to bottom right, #75b041 25%, #9bed56 75%, #629b3a 100%);
+    -fx-col-main: #1f3f00; /* requires a contrast of #444 or lower */
+    -fx-bg: #282828;
+    -fx-bg-hc: #d7d7d7;
+    -fx-bg-mid: #222; /* only use with hc or dark text */
+    -fx-bg-light: #181818;
+    -fx-bg-dark: #dadada;
+
+    /* gray out the app */
+    -fx-bg-veil: rgba(255, 255, 255, 0.3);
+
+    /* The colors used in the syntax highlighting */
+    -fx-sh-kw: #9bed56;
+    -fx-sh-h: -fx-col-main;
+    -fx-sh-brack: #c7ff90;
+    -fx-sh-val: -fx-bg-hc;
+}

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>josch.services</artifactId>
+        <groupId>de.passau.uni.fim.josch.services</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>de.passau.uni.fim.josch.services.persistency</groupId>
+    <artifactId>josch.services.persistency</artifactId>
+    <dependencies>
+        <dependency>
+            <groupId>de.passau.uni.fim.josch.services.interfaces</groupId>
+            <artifactId>josch.services.interfaces</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>de.passau.uni.fim.josch.persistency.interfaces</groupId>
+            <artifactId>josch.persistency.interfaces</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>de.passau.uni.fim.josch.persistency.factory</groupId>
+            <artifactId>josch.persistency.factory</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>de.passau.uni.fim.josch.test.MongoDB</groupId>
+            <artifactId>josch.test.MongoDB</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+
+</project>
