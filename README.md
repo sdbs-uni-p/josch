@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/336198749.svg)](https://zenodo.org/badge/latestdoi/336198749)
+
 # Josch
 Josch is a cockpit application that combines schema extraction and checking for JSON Schema 
 containment to exploit their interactions. It can be used for schema-less NoSQL document stores,
